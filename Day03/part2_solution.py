@@ -65,39 +65,45 @@ print(intersection)
 step = {}
 steps = 0
 for move in line1:
+    
     if move[0] == 'R':
         for i in range(int(move[1:])):
             steps += 1
             line1_pos[0] += 1
+            #print(1,tuple(line1_pos))
             if tuple(line1_pos) in intersection:
                 if tuple(line1_pos) not in step.keys():
                     
                     step[tuple(line1_pos)] = [steps,0]
-                    break
+                    
     elif move[0] == 'L':
         for i in range(int(move[1:])):
             steps += 1
             line1_pos[0] -= 1
+            #print(2,tuple(line1_pos))
             if tuple(line1_pos) in intersection:
                 if tuple(line1_pos) not in step.keys():
                     step[tuple(line1_pos)] = [steps,0]
-                    break
+                    
     elif move[0] == 'D':
         for i in range(int(move[1:])):
             steps += 1
             line1_pos[1] -= 1
+            #print(3,tuple(line1_pos))
             if tuple(line1_pos) in intersection:
                 if tuple(line1_pos) not in step.keys():
                     step[tuple(line1_pos)] = [steps,0]
-                    break
+                    
     elif move[0] == 'U':
         for i in range(int(move[1:])):
             steps += 1
             line1_pos[1] += 1
+            #
+            #print(4,tuple(line1_pos))
             if tuple(line1_pos) in intersection:
                 if tuple(line1_pos) not in step.keys():
                     step[tuple(line1_pos)] = [steps,0]
-                    break
+                    
     else:
         print('something is wrong')
     
@@ -111,7 +117,7 @@ for move in line2:
             if tuple(line2_pos) in intersection:
                 if step[tuple(line2_pos)][1] == 0:
                     step[tuple(line2_pos)][1] = steps
-                    break
+                    
     elif move[0] == 'L':
         
         for i in range(int(move[1:])):
@@ -120,7 +126,7 @@ for move in line2:
             if tuple(line2_pos) in intersection:
                 if step[tuple(line2_pos)][1] == 0:
                     step[tuple(line2_pos)][1] = steps
-                    break
+                    
     elif move[0] == 'D':
         
         for i in range(int(move[1:])):
@@ -129,7 +135,7 @@ for move in line2:
             if tuple(line2_pos) in intersection:
                 if step[tuple(line2_pos)][1] == 0:
                     step[tuple(line2_pos)][1] = steps
-                    break
+                    
     elif move[0] == 'U':
         
         for i in range(int(move[1:])):
@@ -138,8 +144,14 @@ for move in line2:
             if tuple(line2_pos) in intersection:
                 if step[tuple(line2_pos)][1] == 0:
                     step[tuple(line2_pos)][1] = steps
-                    break
+                    
     else:
         print('something is wrong')
 
 print(step)
+
+shortest = 100000000000000000000000
+for coord, dist in step.items():
+    shortest = min(shortest,dist[0]+dist[1])
+
+print(shortest)
