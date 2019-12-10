@@ -190,9 +190,10 @@ def intcode_computer(in1, in2):
 if __name__ == "__main__":
     import itertools
     max_out = -1000000000
-    for seq in list(itertools.permutations([0,1,2,3,4],5)):
+    for seq in list(itertools.permutations([5,6,7,8,9],5)):
         print(seq)
         a_out = intcode_computer(seq[0],0)
+        
         b_out = intcode_computer(seq[1],a_out)
         c_out = intcode_computer(seq[2],b_out)
         d_out = intcode_computer(seq[3],c_out)
